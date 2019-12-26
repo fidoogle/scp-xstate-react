@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import Nav from './components/nav';
+import Error from './components/Error';
+import MyBill from './views/my-bill';
+import MyUse from './views/my-use';
+import MyUplift from './views/my-uplift';
+import ScheduleMove from './views/schedule-move';
+import ContactUs from './views/contact-us';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav/>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/my-bill" component={MyBill} />
+        <Route path="/my-use" component={MyUse} />
+        <Route path="/my-uplift" component={MyUplift} />
+        <Route path="/schedule-move" component={ScheduleMove} />
+        <Route path="/contact-us" component={ContactUs} />
+        <Route component={Error} />
+      </Switch>
     </div>
   );
 }
