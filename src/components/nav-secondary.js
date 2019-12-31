@@ -55,7 +55,9 @@ export default function NavPrimary() {
                 <Link to="/my-use">My Use</Link>
                 <Link to="/my-uplift">My Uplift</Link>
                 <Link to="/schedule-move">Schedule A Move</Link>
-                <Link to="/contact-us">Contact Us></Link>
+                <Link to="/contact-us">Contact Us</Link>
+                <Link to="/xstate">XState</Link>
+                <Link to="/xstate2">XState2</Link>
             </div>
             <div className={classes.navRow}>
                 <div className={classes.navColumn}>

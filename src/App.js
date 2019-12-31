@@ -9,17 +9,26 @@ import MyUplift from './views/my-uplift';
 import ScheduleMove from './views/schedule-move';
 import ContactUs from './views/contact-us';
 
+
+import { useMachine } from "@xstate/react";
+import dataMachine from "./store/data-machine";
+import XState from './views/xstate';
+import XState2 from './views/xstate2';
+
 function App() {
+  const [current, send] = useMachine(dataMachine, {devTools: true});
+
   return (
     <div className="App">
       <Nav/>
       <Switch>
-        <Route path="/" component={Home} exact />
         <Route path="/my-bill" component={MyBill} />
         <Route path="/my-use" component={MyUse} />
         <Route path="/my-uplift" component={MyUplift} />
         <Route path="/schedule-move" component={ScheduleMove} />
         <Route path="/contact-us" component={ContactUs} />
+        <Route path="/xstate"
+          render={() => <XState service={current.context.service} />}/>
         <Route component={Error} />
       </Switch>
     </div>
