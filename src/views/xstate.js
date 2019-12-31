@@ -1,13 +1,14 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-// import { useMachine } from "@xstate/react";
+import { useMachine } from "@xstate/react";
 // import dataMachine from "../store/data-machine";
 import { useService } from "@xstate/react";
 import ChartContainer from '../components/chart-container'
 import SimpleList from '../components/simple-list'
 
 function View(props) {
-    const [current, send] = useService(props.service);
+    //const [current, send] = props; //useService(props.service);
+    const [current, send] = useMachine(props.dataMachine);
     const { data } = current.context;
 
     return (

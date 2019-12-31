@@ -1,9 +1,11 @@
 import React from "react";
-import { useService } from "@xstate/react";
+//import { useService } from "@xstate/react";
+import { useMachine } from "@xstate/react";
 import ChartContainer from '../components/chart-container'
 
 function View(props) {
-    const [current] = useService(props.service);
+    //const [current] = useService(props.service);
+    const [current, send] = useMachine(props.dataMachine);
     const { data } = current.context;
 
     return (

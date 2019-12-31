@@ -16,7 +16,7 @@ import XState from './views/xstate';
 import XState2 from './views/xstate2';
 
 function App() {
-  const [current, send] = useMachine(dataMachine, {devTools: true});
+  const [current, send] = useMachine(dataMachine);
 
   return (
     <div className="App">
@@ -27,8 +27,13 @@ function App() {
         <Route path="/my-uplift" component={MyUplift} />
         <Route path="/schedule-move" component={ScheduleMove} />
         <Route path="/contact-us" component={ContactUs} />
+
         <Route path="/xstate"
-          render={() => <XState service={current.context.service} />}/>
+          render={() => <XState dataMachine={dataMachine}/>} />
+
+        <Route path="/xstate2"
+          render={() => <XState2 dataMachine={dataMachine}/>} />
+
         <Route component={Error} />
       </Switch>
     </div>
