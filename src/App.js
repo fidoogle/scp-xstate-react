@@ -9,15 +9,11 @@ import MyUplift from './views/my-uplift';
 import ScheduleMove from './views/schedule-move';
 import ContactUs from './views/contact-us';
 
-
-import { useMachine } from "@xstate/react";
-import dataMachine from "./store/data-machine";
+//For bar charts
 import XState from './views/xstate';
 import XState2 from './views/xstate2';
 
 function App() {
-  const [current, send] = useMachine(dataMachine);
-
   return (
     <div className="App">
       <Nav/>
@@ -29,7 +25,7 @@ function App() {
         <Route path="/contact-us" component={ContactUs} />
 
         <Route path="/xstate"
-          render={() => <XState dataMachine={dataMachine}/>} />
+          render={() => <XState/>} />
 
         <Route path="/xstate2"
           render={() => <XState2/>} />
