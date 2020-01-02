@@ -32,7 +32,7 @@ function App() {
           render={() => <XState dataMachine={dataMachine}/>} />
 
         <Route path="/xstate2"
-          render={() => <XState2 dataMachine={dataMachine}/>} />
+          render={() => <XState2/>} />
 
         <Route component={Error} />
       </Switch>

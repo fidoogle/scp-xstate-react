@@ -1,14 +1,20 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
 import { useMachine } from "@xstate/react";
-// import dataMachine from "../store/data-machine";
+import dataMachine from "../store/data-machine";
 import { useService } from "@xstate/react";
 import ChartContainer from '../components/chart-container'
 import SimpleList from '../components/simple-list'
 
 function View(props) {
     //const [current, send] = props; //useService(props.service);
-    const [current, send] = useMachine(props.dataMachine);
+    //const [current, send] = useMachine(props.dataMachine);
+    
+
+    const initial = { data: [], entry: true };
+    const initialMachine = dataMachine.withContext({...dataMachine.initialState.context, ...initial});
+    console.log('Fidel initialState:', initialMachine.initialState.value);
+    const [current, send] = useMachine(initialMachine);
     const { data } = current.context;
 
     return (

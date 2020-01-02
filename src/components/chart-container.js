@@ -3,14 +3,19 @@ import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js';
 
 const ChartContainer = ({seriesData}) => {
-    barChartData.labels = seriesData.map(o => o.month);
-    barChartData.datasets[0].data = seriesData.map(o => o.volume);
-    //barChartData.datasets[1].data = seriesData.map(o => o.volume2);
+    if (seriesData) {
+        barChartData.labels = seriesData.map(o => o.month);
+        barChartData.datasets[0].data = seriesData.map(o => o.volume);
+        //barChartData.datasets[1].data = seriesData.map(o => o.volume2);
+        return (
+            <div className="chart-container" style={{position: 'relative', height:'40vh', width:'80vw'}}>
+                <Bar data={barChartData} options={barChartOptions}/>
+            </div>
+        );
+    }
     return (
-        <div className="chart-container" style={{position: 'relative', height:'40vh', width:'80vw'}}>
-            <Bar data={barChartData} options={barChartOptions}/>
-        </div>
-    );
+        <div> No data found </div>
+    )
 }
 
 const color = Chart.helpers.color;

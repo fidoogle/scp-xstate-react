@@ -1,5 +1,5 @@
 import { Machine, assign } from "xstate";
-
+import { get } from 'lodash';
 
 // For simulating data
 const getRndInteger = (min, max) => {
@@ -16,56 +16,86 @@ const allData = new Array(25).fill(0).map((_val, i) => buildDataValue(i));
 const perPage = 10;
 
 
-const dataMachine = new Machine({
-    id: "dataMachine",
-    initial: "loading",
-    context: {
-        data: []
-    },
-    states: {
-        loading: {
-            invoke: {
-                id: "dataLoader",
-                src: (context, _event) => {
-                    return (callback, _onEvent) => {
-                        setTimeout(() => { //Simulate an API Call
-                            const { data } = context;
-                            const newData = allData.slice(data.length, data.length + perPage);
-                            const hasMore = newData.length === perPage;
-
-                            if (hasMore) {
-                                callback({ type: "DONE_MORE", newData });
-                            } else {
-                                callback({ type: "DONE_COMPLETE", newData });
-                            }
-                        }, 1000);
-                    };
+//const isEntry = ({ entry }) => entry;
+const dataMachine = new Machine(
+    {
+        id: "dataMachine",
+        initial: "unknown", //https://xstate.js.org/docs/guides/events.html#null-events
+        context: {
+            data: []
+        },
+        states: {
+            unknown: {
+                on: {
+                    // immediately take transition that satisfies conditional guard.
+                    // otherwise, no transition occurs
+                    '': [
+                        { target: 'loading', cond: 'isEntry' },
+                        { target: 'complete' }
+                    ]
                 }
             },
-            on: {
-                DONE_MORE: {
-                    target: "more",
-                    actions: assign({
-                        data: ({ data }, { newData = [] }) => [...data, ...newData]
-                    })
+            loading: {
+                invoke: {
+                    id: "dataLoader",
+                    src: "loadData"
                 },
-                DONE_COMPLETE: {
-                    target: "complete",
-                    actions: assign({
-                        data: ({ data }, { newData = [] }) => [...data, ...newData]
-                    })
-                },
-                FAIL: "failure"
+                on: {
+                    DONE_MORE: {
+                        target: "more",
+                        actions: assign({
+                            data: ({ data }, { newData = [] }) => [...data, ...newData]
+                        })
+                    },
+                    DONE_COMPLETE: {
+                        target: "complete",
+                        actions: assign({
+                            data: ({ data }, { newData = [] }) => [...data, ...newData]
+                        })
+                    },
+                    FAIL: "failure"
+                }
+            },
+            more: {
+                on: {
+                    LOAD: "loading"
+                }
+            },
+            complete: { type: "final" },
+            failure: { type: "final" }
+        }
+    },
+    {
+        actions: {
+            /* ... */
+        },
+        activities: {
+            /* ... */
+        },
+        guards: {
+            isEntry: (context, _event) => {
+                //return get(context, 'data.length', 0) === 0;
+                return get(context, 'entry', false);
             }
         },
-        more: {
-            on: {
-                LOAD: "loading"
+        services: {
+            loadData: (context, _event) => {console.log('Fidel2 floading data', context)
+                return (callback, _onEvent) => {console.log('Fidel floading data')
+                    setTimeout(() => { //Simulate an API Call
+                        const { data }= context; //get(context, 'data', []);
+                        const newData = allData.slice(data.length, data.length + perPage);
+                        const hasMore = newData.length === perPage;
+
+                        if (hasMore) {
+                            callback({ type: "DONE_MORE", newData });
+                        } else {
+                            callback({ type: "DONE_COMPLETE", newData });
+                        }
+                    }, 1000);
+                };
             }
-        },
-        complete: { type: "final" },
-        failure: { type: "final" }
+        }
     }
-});
+);
 
 export default dataMachine;
