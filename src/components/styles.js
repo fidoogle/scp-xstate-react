@@ -22,6 +22,15 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    orangebill: {
+        color: '#da690b',
+        'text-align': 'center',
+        'margin': '0 !important',
+        'font-family': 'Oswald',
+        'font-style': 'normal',
+        'font-weight': 100,
+        'font-size': '92px !important'
+    }
 }));
 
 export default useStyles;

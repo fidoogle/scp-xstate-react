@@ -5,6 +5,7 @@ import { palette } from '@material-ui/system';
 
 import { CardContent, Card as MuiCard, Typography } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Bar } from "react-chartjs-2";
 
@@ -24,8 +25,7 @@ function BarChart() {
         //load data from backend
         loadBarData()
             .then((response) => {
-                console.log('fidel', response)
-                setData1(response.map(o => o.UsageGallons));
+                setData1(response.map(o => o.usagegallons));
             })
     }, []);
 
@@ -93,9 +93,11 @@ function BarChart() {
         </Typography>
 
                 <Spacer mb={6} />
-
+                
                 <ChartWrapper>
-                    <Bar data={data} options={options} />
+                    {data1.length ? 
+                        <Bar data={data} options={options} /> : <CircularProgress />
+                    }
                 </ChartWrapper>
             </CardContent>
         </Card>

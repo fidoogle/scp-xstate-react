@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import UseStyles from '../components/styles';
 import { Box, Chip, Grid, Paper, Typography } from '@material-ui/core';
 import BarChart from '../components/bar-chart'
+import BillHighlights from '../components/bill-highlights'
 import BillSlider from '../components/slider'
+import { loadBalance } from '../services/chart-data';
+
 
 // import dynamic from 'next/dynamic'
 // const SliderComponentWithNoSSR = dynamic(import('../components/slider2'), {
 //     ssr: false
 // })
 
-export default function NavPrimary() { 
+export default function MyBillView() { 
     const classes = UseStyles();
+
+    const [balances, setBalances] = useState(null);
+
+    useEffect(() => {
+        //load data from backend
+        loadBalance()
+            .then((response) => {
+                setBalances(response);
+            })
+    }, []);
 
     return (
         <>
@@ -29,11 +42,9 @@ export default function NavPrimary() {
                         alignItems="flex-start"
                         spacing={2}
                     >
-                        <div className={classes.title}>Balance Due</div>
-                        <div>
-                            <img src="/bill-left.PNG"/>
-                        </div>
+                        <BillHighlights balances={balances}/>
                     </Grid>
+
                     <Grid item xs={12} sm={7}
                         container
                         direction="column"
@@ -45,9 +56,11 @@ export default function NavPrimary() {
                         <div>
                             <BarChart/>
                         </div>
+                        
                         <div className={classes.title}>Bill History</div>
                     </Grid>
                 </Grid>
+                <br/>
                 <BillSlider />
             </div>
         </>

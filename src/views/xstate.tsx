@@ -9,19 +9,9 @@ import { useMachine } from "@xstate/react";
 
 function View() {
     const [fetchState, sendToFetchMachine] = useMachine(fetchMachine, {
-        actions: {
+        services: {
             fetchData: (ctx, event) => {
-                loadBarData2()
-                    .then(
-                        //success
-                        (response:any) => {
-                            sendToFetchMachine({ type: 'RESOLVE', results: response })
-                        },
-                        //failed
-                        message => {
-                            sendToFetchMachine({ type: 'REJECT', message })
-                        }
-                    )
+                return loadBarData2();
             }
         }
     });
@@ -44,7 +34,7 @@ function View() {
             
             {fetchState.matches('pending') && <img src="/dot-loader.gif" height="20" />}
 
-            {fetchState.matches('successful') && <ChartContainer seriesData={fetchState.context.results} />}
+            {fetchState.matches('successful') && <><ChartContainer seriesData={fetchState.context.results} /> <SimpleList list={fetchState.context.results}/></>}
 
             {fetchState.matches('failed') && <p>{fetchState.context.message}</p>}
             

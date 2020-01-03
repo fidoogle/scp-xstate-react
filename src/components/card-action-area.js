@@ -36,9 +36,9 @@ export default function SimpleCard() {
                         background: 'linear-gradient(180deg, #5691C8 0%, #0078AE 100%)',
                         padding: 10,
                         display: 'flex',
-                        'flex-wrap': 'nowrap',
-                        'justify-content': 'center',
-                        'align-items': 'center',
+                        'flexWrap': 'nowrap',
+                        'justifyContent': 'center',
+                        'alignItems': 'center',
                     }}>
                         <Icon>drafts-outlined</Icon> &nbsp; <span>10/3/2019</span>
                     </div>
@@ -48,9 +48,9 @@ export default function SimpleCard() {
                         background: '#b6e8ff',
                         padding: 10,
                         display: 'flex',
-                        'flex-wrap': 'nowrap',
-                        'justify-content': 'center',
-                        'align-items': 'center',
+                        'flexWrap': 'nowrap',
+                        'justifyContent': 'center',
+                        'alignItems': 'center',
                     }}>
                         <span>Bill Amount: $47.19</span>
                     </div>
@@ -60,9 +60,9 @@ export default function SimpleCard() {
                     background: 'linear-gradient(180deg, #6D9F43 0%, #279A2C 100%)',
                     padding: 10,
                     display: 'flex',
-                    'flex-wrap': 'nowrap',
-                    'justify-content': 'center',
-                    'align-items': 'center',
+                    'flexWrap': 'nowrap',
+                    'justifyContent': 'center',
+                    'alignItems': 'center',
                 }}>
                     <Icon>search</Icon> &nbsp; <span>View bill</span>
                 </CardActionArea>
