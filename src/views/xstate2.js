@@ -1,6 +1,6 @@
 import React from "react";
 //import { useService } from "@xstate/react";
-import dataMachine from "../store/data-machine";
+import dataMachine from "../machines/load-more-data";
 import { useMachine } from "@xstate/react";
 import ChartContainer from '../components/chart-container'
 import SimpleList from '../components/simple-list'

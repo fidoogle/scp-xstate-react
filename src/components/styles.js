@@ -30,6 +30,13 @@ const useStyles = makeStyles(theme => ({
         'font-style': 'normal',
         'font-weight': 100,
         'font-size': '92px !important'
+    },
+    flexContainer: {
+        display: 'flex',
+        'flex-direction': 'row',
+        'flex-wrap': 'wrap',
+        'justify-content': 'flex-start',
+        'align-items': 'flex-start'
     }
 }));
 

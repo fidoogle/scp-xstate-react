@@ -10,7 +10,7 @@ import ScheduleMove from './views/schedule-move';
 import ContactUs from './views/contact-us';
 
 //For bar charts
-import XState from './views/xstate';
+import LoadMore from './views/load-more';
 import XState2 from './views/xstate2';
 
 function App() {
@@ -24,8 +24,8 @@ function App() {
         <Route path="/schedule-move" component={ScheduleMove} />
         <Route path="/contact-us" component={ContactUs} />
 
-        <Route path="/xstate"
-          render={() => <XState/>} />
+        <Route path="/load-more"
+          render={() => <LoadMore/>} />
 
         <Route path="/xstate2"
           render={() => <XState2/>} />
