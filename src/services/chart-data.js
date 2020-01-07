@@ -54,7 +54,7 @@ const loadBarData2 = async () => {
                 'Ocp-Apim-Subscription-Key': 'd334acadb84d48b39eca45d2bd4119ef'
             }
         });
-        // We have a response, but let's first check if component is still mounted
+        console.log(response.data)
         return response.data;
     } catch(e) {
         console.error('Request for loadBarData failed');
