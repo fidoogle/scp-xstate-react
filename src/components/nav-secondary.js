@@ -1,12 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, FormControl, NativeSelect, Select } from '@material-ui/core';
+import { Box, FormControl, MenuItem, NativeSelect, Select } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import ListIcon from '@material-ui/icons/List';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 //import Link from './nav-secondary-link';
 import { NavLink } from 'react-router-dom';
+import fetchMachine from "../machines/select-account";
+import { useMachine } from "@xstate/react";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -47,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavPrimary() { 
     const classes = useStyles();
+    const [fetchState, sendToFetchMachine] = useMachine(fetchMachine);
 
     return (
         <div className={classes.nav}>
@@ -57,20 +60,21 @@ export default function NavPrimary() {
                 <NavLink to="/schedule-move" activeClassName='selected'>Schedule A Move</NavLink>
                 <NavLink to="/contact-us" activeClassName='selected'>Contact Us</NavLink>
                 <NavLink to="/load-more" activeClassName='selected'>Load More</NavLink>
-                <NavLink to="/xstate2" activeClassName='selected'>XState2</NavLink>
+                <NavLink to="/select-account" activeClassName='selected'>Select Acct</NavLink>
             </div>
             <div className={classes.navRow}>
                 <div className={classes.navColumn}>
                     <label>Select Account</label>
                     <div className={classes.navRow}>
                         <FormControl className={classes.formControl}>
-                            <NativeSelect
-                            value={10}
+                            <Select
+                            onChange={(event) => sendToFetchMachine('SWITCH_ACCOUNT', {account: event.target.value})}
+                            defaultValue="11111"
                             >
-                                <option value={10}>000011111-0011111-0001</option>
-                                <option value={20}>000022222-0022222-0002</option>
-                                <option value={30}>000033333-0033333-0003</option>
-                            </NativeSelect>
+                                <MenuItem value="11111">000011111-0011111-0001</MenuItem>
+                                <MenuItem value="22222">000022222-0022222-0002</MenuItem>
+                                <MenuItem value="33333">000033333-0033333-0003</MenuItem>
+                            </Select>
                         </FormControl>
                         <Box bgcolor={green[700]} color={grey[50]}><ListIcon/></Box>
                     </div>

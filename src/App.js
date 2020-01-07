@@ -11,7 +11,7 @@ import ContactUs from './views/contact-us';
 
 //For bar charts
 import LoadMore from './views/load-more';
-import XState2 from './views/xstate2';
+import SelectAccount from './views/select-account';
 
 function App() {
   return (
@@ -27,8 +27,8 @@ function App() {
         <Route path="/load-more"
           render={() => <LoadMore/>} />
 
-        <Route path="/xstate2"
-          render={() => <XState2/>} />
+        <Route path="/select-account"
+          render={() => <SelectAccount/>} />
 
         <Route component={Error} />
       </Switch>
