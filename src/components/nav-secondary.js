@@ -6,7 +6,7 @@ import ListIcon from '@material-ui/icons/List';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 //import Link from './nav-secondary-link';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -51,13 +51,13 @@ export default function NavPrimary() {
     return (
         <div className={classes.nav}>
             <div className={classes.navRow}>
-                <Link to="/my-bill">My Bill</Link>
-                <Link to="/my-use">My Use</Link>
-                <Link to="/my-uplift">My Uplift</Link>
-                <Link to="/schedule-move">Schedule A Move</Link>
-                <Link to="/contact-us">Contact Us</Link>
-                <Link to="/load-more">Load More</Link>
-                <Link to="/xstate2">XState2</Link>
+                <NavLink to="/my-bill" activeClassName='selected'>My Bill</NavLink>
+                <NavLink to="/my-use" activeClassName='selected'>My Use</NavLink>
+                <NavLink to="/my-uplift" activeClassName='selected'>My Uplift</NavLink>
+                <NavLink to="/schedule-move" activeClassName='selected'>Schedule A Move</NavLink>
+                <NavLink to="/contact-us" activeClassName='selected'>Contact Us</NavLink>
+                <NavLink to="/load-more" activeClassName='selected'>Load More</NavLink>
+                <NavLink to="/xstate2" activeClassName='selected'>XState2</NavLink>
             </div>
             <div className={classes.navRow}>
                 <div className={classes.navColumn}>

@@ -5,20 +5,24 @@ import Tooltip from '@material-ui/core/Tooltip';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
-const good = green[400];
+const good = green[300];
 const warning = red[400];
 
 function View({list}) {
     const classes = UseStyles();
     return (
-        <div className={classes.flexContainer}>
-            {list && list.map(row => (
-                <Tooltip title={row.month} key={row.month}>
+        <>  <br/><br/>
+            <Chip label="&lt; 3000" style={{backgroundColor: good}}/> &nbsp; <Chip label="&gt; 8000" style={{backgroundColor: warning}}/>
+            <br/><br/>
+            <div className={classes.flexContainer}>
+                {list && list.map(row => (
+                    <Tooltip title={row.month} key={row.month}>
 
-                    <Chip label={row.volume} style={{backgroundColor: row.volume<3000?good: (row.volume>8000?warning:'')}}/>
-                </Tooltip>
-            ))}
-        </div>
+                        <Chip label={row.volume} style={{backgroundColor: row.volume<3000?good: (row.volume>8000?warning:'')}}/>
+                    </Tooltip>
+                ))}
+            </div>
+        </>
     );
 }
 

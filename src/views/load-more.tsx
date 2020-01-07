@@ -10,8 +10,8 @@ function View() {
 
     return (
         <div className="App">
-            <div>Click the button to load more data. Notice there's two components on this page sharing the data.
-            <br />Refresh the page and switch between this view and XState2. This is true state sharing across components/views.
+            <div>Click the button to load more data. <br/>
+            Notice there's two components on this page sharing the data: the chart and the chips below.
             </div>
             
             {fetchState.matches('loading') && <img src="/dot-loader.gif" height="20" />}
