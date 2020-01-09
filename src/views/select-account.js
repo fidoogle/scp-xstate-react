@@ -12,7 +12,7 @@ function View(props) {
 
     return (
         <div className="App">
-            <div>This chart's data is driven by the selected account</div>
+            <div>Uses XState to synchronize the drop list of accounts with the chart.</div>
 
             {fetchState.matches('loading') && <img src="/dot-loader.gif" height="20" />}
             

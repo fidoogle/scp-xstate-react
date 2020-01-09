@@ -10,7 +10,7 @@ function View() {
 
     return (
         <div className="App">
-            <div>Click the button to load more data. <br/>
+            <div>Uses XState to load more data into a state chart. <br/>
             Notice there's two components on this page sharing the data: the chart and the chips below.
             </div>
             

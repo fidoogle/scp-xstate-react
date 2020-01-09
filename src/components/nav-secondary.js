@@ -42,8 +42,8 @@ const useStyles = makeStyles(theme => ({
         'justify-content': 'center',
         'align-items': 'flex-start',
     },
-    navRight: {
-        
+    tiny: {
+        fontSize: '10px'
     }
 }));
 
@@ -59,8 +59,8 @@ export default function NavPrimary() {
                 <NavLink to="/my-uplift" activeClassName='selected'>My Uplift</NavLink>
                 <NavLink to="/schedule-move" activeClassName='selected'>Schedule A Move</NavLink>
                 <NavLink to="/contact-us" activeClassName='selected'>Contact Us</NavLink>
-                <NavLink to="/load-more" activeClassName='selected'>Load More</NavLink>
-                <NavLink to="/select-account" activeClassName='selected'>Select Acct</NavLink>
+                <NavLink to="/load-more" activeClassName='selected'>Load More (x)</NavLink>
+                <NavLink to="/select-account" activeClassName='selected'>Select Acct (x)</NavLink>
             </div>
             <div className={classes.navRow}>
                 <div className={classes.navColumn}>
