@@ -1,30 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 import ChartContainer from '../components/chart-container'
 import SimpleList from '../components/simple-list'
-import { FormControl, MenuItem, Select } from '@material-ui/core';
-import { MachineContext } from '../components/global-machine-context';
-import { interpret } from 'xstate';
-import { useMachine } from '@xstate/react';
+import fetchMachine from "../machines/select-account";
+import { useMachine } from "@xstate/react";
+import { Button, FormControl, MenuItem, NativeSelect, Select } from '@material-ui/core';
 
 
-
-function View() {
-    const machine = useContext(MachineContext);
-
-    // Interpret the machine
-    //const service = interpret(machine);
-    const [state, send] = useMachine(machine);
-
+function View(props) {
+    const [fetchState, sendToFetchMachine] = useMachine(fetchMachine);
+    const { data } = fetchState.context;
 
     return (
         <div className="App">
             <div>Uses XState to synchronize the drop list of accounts with the chart.</div>
 
-            {state.matches('loading') && <img src="/dot-loader.gif" height="20" alt=""/>}
+            {fetchState.matches('loading') && <img src="/dot-loader.gif" height="20" />}
             
             <FormControl>
                 <Select
-                onChange={(event) => send('SWITCH_ACCOUNT', {account: event.target.value})}
+                onChange={(event) => sendToFetchMachine('SWITCH_ACCOUNT', {account: event.target.value})}
                 defaultValue="11111"
                 >
                     <MenuItem value="11111">000011111-0011111-0001</MenuItem>
@@ -33,9 +27,9 @@ function View() {
                 </Select>
             </FormControl>
 
-            <ChartContainer seriesData={state.context.data} />
+            <ChartContainer seriesData={data} />
 
-            <SimpleList list={state.context.data}/>
+            <SimpleList list={data}/>
         </div>
     );
 }
