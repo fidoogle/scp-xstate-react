@@ -13,25 +13,28 @@ import ContactUs from './views/contact-us';
 import LoadMore from './views/load-more';
 import SelectAccount from './views/select-account';
 
+//For State and Context
+import { MachineStore } from './components/global-machine-context';
+
+
 function App() {
+  
+
   return (
     <div className="App">
-      <Nav/>
-      <Switch>
-        <Route path="/my-bill" component={MyBill} />
-        <Route path="/my-use" component={MyUse} />
-        <Route path="/my-uplift" component={MyUplift} />
-        <Route path="/schedule-move" component={ScheduleMove} />
-        <Route path="/contact-us" component={ContactUs} />
-
-        <Route path="/load-more"
-          render={() => <LoadMore/>} />
-
-        <Route path="/select-account"
-          render={() => <SelectAccount/>} />
-
-        <Route component={Error} />
-      </Switch>
+      <MachineStore>
+        <Nav/>
+        <Switch>
+          <Route path="/my-bill" component={MyBill} />
+          <Route path="/my-use" component={MyUse} />
+          <Route path="/my-uplift" component={MyUplift} />
+          <Route path="/schedule-move" component={ScheduleMove} />
+          <Route path="/contact-us" component={ContactUs} />
+          <Route path="/load-more" component={LoadMore} />
+          <Route path="/select-account" component={SelectAccount} />
+          <Route component={Error} />
+        </Switch>
+      </MachineStore>
     </div>
   );
 }

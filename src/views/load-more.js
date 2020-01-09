@@ -14,7 +14,7 @@ function View() {
             Notice there's two components on this page sharing the data: the chart and the chips below.
             </div>
             
-            {fetchState.matches('loading') && <img src="/dot-loader.gif" height="20" />}
+            {fetchState.matches('loading') && <img src="/dot-loader.gif" height="20" alt=""/>}
 
             <div style={{ background: "#e1e1e1" }}>
                 {fetchState.matches('more') && 

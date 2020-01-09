@@ -1,28 +1,30 @@
-import React, { useContext } from "react";
-import ChartContainer from '../components/chart-container'
-import SimpleList from '../components/simple-list'
+import React, { useContext } from 'react';
 import { FormControl, MenuItem, Select } from '@material-ui/core';
+import UseStyles from '../components/styles';
 import { MachineContext } from '../components/global-machine-context';
 import { interpret } from 'xstate';
 import { useMachine } from '@xstate/react';
 
 
-
-function View() {
+const MyComponent = () => {
+    const classes = UseStyles();
     const machine = useContext(MachineContext);
+    console.log('Fidel machine', {machine})
+    const [state, send] = useMachine(machine);
 
     // Interpret the machine
     //const service = interpret(machine);
-    const [state, send] = useMachine(machine);
 
+    // Add a state listener, which is called whenever a state transition occurs.
+    // service.onTransition(state => {
+    // console.log(state.value);
+    // });
+
+    // service.start(previousState);
 
     return (
-        <div className="App">
-            <div>Uses XState to synchronize the drop list of accounts with the chart.</div>
-
-            {state.matches('loading') && <img src="/dot-loader.gif" height="20" alt=""/>}
-            
-            <FormControl>
+        
+            <FormControl className={classes.formControl}>
                 <Select
                 onChange={(event) => send('SWITCH_ACCOUNT', {account: event.target.value})}
                 defaultValue="11111"
@@ -32,12 +34,8 @@ function View() {
                     <MenuItem value="33333">000033333-0033333-0003</MenuItem>
                 </Select>
             </FormControl>
-
-            <ChartContainer seriesData={state.context.data} />
-
-            <SimpleList list={state.context.data}/>
-        </div>
-    );
+            
+    )
 }
 
-export default View;
+export default MyComponent;
