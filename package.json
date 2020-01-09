@@ -23,6 +23,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^4.4.1",
     "typescript": "^3.7.4",
+    "use-machine": "^1.1.2",
     "xstate": "^4.7.5"
   },
   "scripts": {
