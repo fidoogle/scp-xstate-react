@@ -6,7 +6,7 @@ import ListIcon from '@material-ui/icons/List';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 import { NavLink } from 'react-router-dom';
-//import AccountSelector from './account-selector';
+import AccountSelector from './account-selector';
 
 
 const useStyles = makeStyles(theme => ({
@@ -40,9 +40,6 @@ const useStyles = makeStyles(theme => ({
         'flex-direction': 'column',
         'justify-content': 'center',
         'align-items': 'flex-start',
-    },
-    tiny: {
-        fontSize: '10px'
     }
 }));
 
@@ -59,12 +56,13 @@ export default function NavPrimary() {
                 <NavLink to="/contact-us" activeClassName='selected'>Contact Us</NavLink>
                 <NavLink to="/load-more" activeClassName='selected'>Load More (x)</NavLink>
                 <NavLink to="/select-account" activeClassName='selected'>Select Acct (x)</NavLink>
+                <NavLink to="/global-select" activeClassName='selected'>Global Select</NavLink>
             </div>
             <div className={classes.navRow}>
                 <div className={classes.navColumn}>
                     <label>Select Account</label>
                     <div className={classes.navRow}>
-                        
+                        <AccountSelector/>
                         <Box bgcolor={green[700]} color={grey[50]}><ListIcon/></Box>
                     </div>
                 </div>
@@ -72,7 +70,7 @@ export default function NavPrimary() {
                     <div className={classes.navRow}>
                         <Icon className="fa fa-cog" style={{ color: grey[50] }} />
                         <div className="fa-text">
-                            Manage <br/>Accoungts
+                            Manage <br/>Accounts
                         </div>
                     </div>
                 </a>

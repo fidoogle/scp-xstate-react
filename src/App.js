@@ -12,9 +12,11 @@ import ContactUs from './views/contact-us';
 //For bar charts
 import LoadMore from './views/load-more';
 import SelectAccount from './views/select-account';
+import GlobalSelect from './views/global-select';
 
 //For State and Context
-import { MachineStore } from './components/global-machine-context';
+//import { MachineStore } from './components/global-machine-context';
+import StoreProvider from './stores/store'
 
 
 function App() {
@@ -22,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <MachineStore>
+      <StoreProvider>
         <Nav/>
         <Switch>
           <Route path="/my-bill" component={MyBill} />
@@ -32,9 +34,10 @@ function App() {
           <Route path="/contact-us" component={ContactUs} />
           <Route path="/load-more" component={LoadMore} />
           <Route path="/select-account" component={SelectAccount} />
+          <Route path="/global-select" component={GlobalSelect} />
           <Route component={Error} />
         </Switch>
-      </MachineStore>
+      </StoreProvider>
     </div>
   );
 }
