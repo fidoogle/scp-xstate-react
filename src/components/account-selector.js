@@ -5,19 +5,21 @@ import { StoreContext } from '../stores/store'
 
 
 const MyComponent = () => {
+
     const classes = UseStyles();
     const { ['appInfo']: [dataApp, setDataApp] } = React.useContext(StoreContext); //fancy destructuring
+    const { ['accountInfo']: [dataAccounts, setDataAccounts] } = useContext(StoreContext); //fancy destructuring
 
     return (
         
             <FormControl className={classes.formControl}>
                 <Select
                 onChange={(event) => setDataApp({...dataApp, selectedAccount: event.target.value})}
-                defaultValue="11111"
+                defaultValue={dataAccounts[0]}
                 >
-                    <MenuItem value="11111">000011111-0011111-0001</MenuItem>
-                    <MenuItem value="22222">000022222-0022222-0002</MenuItem>
-                    <MenuItem value="33333">000033333-0033333-0003</MenuItem>
+                    {dataAccounts.map((acct, index) => (
+                        <MenuItem value={acct} key={index}>0000{acct}-0011111-0001</MenuItem>
+                    ))}
                 </Select>
             </FormControl>
             
