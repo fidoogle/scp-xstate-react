@@ -2,8 +2,8 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js';
 
-const ChartContainer = ({seriesData}) => {
-    if (seriesData) {
+const ChartContainer = ({seriesData=[]}) => {
+    if (seriesData.length) {
         barChartData.labels = seriesData.map(o => o.month);
         barChartData.datasets[0].data = seriesData.map(o => o.volume);
         //barChartData.datasets[1].data = seriesData.map(o => o.volume2);

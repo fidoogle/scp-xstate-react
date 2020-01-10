@@ -8,15 +8,15 @@ import red from '@material-ui/core/colors/red';
 const good = green[300];
 const warning = red[400];
 
-function View({list}) {
+function View({list=[]}) {
     const classes = UseStyles();
     return (
         <>  <br/><br/>
             <Chip label="&lt; 3000" style={{backgroundColor: good}}/> &nbsp; <Chip label="&gt; 8000" style={{backgroundColor: warning}}/>
             <br/><br/>
             <div className={classes.flexContainer}>
-                {list && list.map(row => (
-                    <Tooltip title={row.month} key={row.month}>
+                {list.length && list.map((row, index) => (
+                    <Tooltip title={row.month=''} key={index}>
 
                         <Chip label={row.volume} style={{backgroundColor: row.volume<3000?good: (row.volume>8000?warning:'')}}/>
                     </Tooltip>
